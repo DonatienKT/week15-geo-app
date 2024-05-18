@@ -5,10 +5,27 @@ pipeline{
    }
 
     stages{
+        /*
+        stage("sonnar scan"){
+                        steps{
+                withSonarQubeEnv('sonar')
+                sh ''
+            }
+        }*/
+        
         stage("maven"){
             steps {
                  sh 'mvn clean validate compile install test package'
             }
         }
+
+        stage("upload artifact"){
+            steps{
+                sh 'curl -uadmin:AP6Q75MQXFQHggFWzUUVfo8HfEy -T \
+                 target/bio*.jar \
+                 "http://ec2-54-175-251-29.compute-1.amazonaws.com:8081/artifactory/devops-don/medical/biomedical.jar"'
+            }
+        }
     }   
 }
+
