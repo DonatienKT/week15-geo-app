@@ -8,7 +8,9 @@ pipeline{
         
         stage("sonnar scan"){
             steps{
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DonatienKT_week15-geo-app'
+                withSonarQubeEnv('sonarqube'){
+                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DonatienKT_week15-geo-app'
+                }
             }
         }
         
