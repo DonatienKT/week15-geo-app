@@ -16,11 +16,11 @@ pipeline{
         stage("maven"){
             steps {
                  sh 'mvn clean' 
-                 sh 'validate' 
-                 sh 'compile' 
-                 sh 'install' 
-                 sh 'test' 
-                 sh 'package'
+                 sh 'mvn validate' 
+                 sh 'mvn compile' 
+                 sh 'mvn install' 
+                 sh 'mvn test' 
+                 sh 'mvn package'
             }
         }
 
